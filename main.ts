@@ -1,5 +1,17 @@
 RainbowSparkleUnicorn.start()
-let mouth = neopixel.create(DigitalPin.P0, 24, NeoPixelMode.RGB)
+let strip = neopixel.create(DigitalPin.P0, 27, NeoPixelMode.RGB)
+let heart = strip.range(0, 12)
+let smile = strip.range(12, 15)
+heart.setBrightness(50)
+smile.setBrightness(50)
+heart.showColor(neopixel.colors(NeoPixelColors.Indigo))
+smile.showColor(neopixel.colors(NeoPixelColors.Red))
+basic.showIcon(IconNames.Heart)
+smile.showRainbow(1, 360)
+heart.showRainbow(1, 360)
+
 basic.forever(function () {
-	
+    basic.pause(1000)
+   // smile.rotate(1)
+   // heart.rotate(1)
 })
