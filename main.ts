@@ -9,9 +9,14 @@ smile.showColor(neopixel.colors(NeoPixelColors.Red))
 basic.showIcon(IconNames.Heart)
 smile.showRainbow(1, 360)
 heart.showRainbow(1, 360)
+RainbowSparkleUnicorn.Sound.setVolume(10)
+RainbowSparkleUnicorn.Sound.playTrack(1)
 
 basic.forever(function () {
-    basic.pause(1000)
-   // smile.rotate(1)
-   // heart.rotate(1)
+    basic.pause(1000);
+    smile.rotate(1);
+    heart.rotate(1);
+    strip.show();
 })
+
+
