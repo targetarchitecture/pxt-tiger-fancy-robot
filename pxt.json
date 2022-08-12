@@ -1,5 +1,6 @@
 {
     "name": "pxt-tiger-fancy-robot",
+    "version": "1.0.0",
     "description": "",
     "dependencies": {
         "core": "*",
