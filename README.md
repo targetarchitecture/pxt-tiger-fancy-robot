@@ -1,14 +1,8 @@
+Tiger Fancy uses the SN9 version of the Rainbow Sparkle Unicorn Microbit board.
+
 
 > Open this page at [https://targetarchitecture.github.io/pxt-tiger-fancy-robot/](https://targetarchitecture.github.io/pxt-tiger-fancy-robot/)
 
-## Use as Extension
-
-This repository can be added as an **extension** in MakeCode.
-
-* open [https://makecode.microbit.org/](https://makecode.microbit.org/)
-* click on **New Project**
-* click on **Extensions** under the gearwheel menu
-* search for **https://github.com/targetarchitecture/pxt-tiger-fancy-robot** and import
 
 ## Edit this project ![Build status badge](https://github.com/targetarchitecture/pxt-tiger-fancy-robot/workflows/MakeCode/badge.svg)
 
