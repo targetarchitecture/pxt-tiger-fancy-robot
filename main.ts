@@ -19,11 +19,20 @@ function startRobot()
         heart.rotate(1);
         strip.show();
     })
+    
+    radio.setGroup(76)
+    radio.setTransmitPower(7)
 }
+
+radio.onReceivedValue(function (name: string, value: number) {
+
+})
+
 input.onButtonPressed(Button.A, function() {
     RainbowSparkleUnicorn.Sound.setVolume(10)
     RainbowSparkleUnicorn.Sound.playTrack(Math.randomRange(1,4))
 })
+
 function rainbowMouth() 
 {
   const  waiting = 200
