@@ -9,7 +9,7 @@ function startRobot() {
     heart.showRainbow(1, 360)
 
     RainbowSparkleUnicorn.Sound.setVolume(12)
-    //RainbowSparkleUnicorn.Sound.playTrack(1)
+    RainbowSparkleUnicorn.Sound.playTrack(1)
 
     RainbowSparkleUnicorn.Light.turnAllOn();
 
@@ -27,7 +27,7 @@ function startRobot() {
 
         let soundLevel = input.soundLevel();
 
-        if (soundLevel < 20) {
+        if (soundLevel < 50) {
             drawMouth(8, neopixel.colors(NeoPixelColors.Black));
         } else {
             drawMouth(8, neopixel.colors(NeoPixelColors.Purple));
