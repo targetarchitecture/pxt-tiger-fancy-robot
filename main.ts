@@ -1,25 +1,39 @@
-function startRobot() 
-{
+function startRobot() {
     RainbowSparkleUnicorn.start()
     heart.setBrightness(50)
     mouth.setBrightness(50)
     heart.showColor(neopixel.colors(NeoPixelColors.Indigo))
-    mouth.showColor(neopixel.colors(NeoPixelColors.Red))
-    basic.showIcon(IconNames.Heart)
-    mouth.showRainbow(1, 360)
+    //mouth.showColor(neopixel.colors(NeoPixelColors.Red))
+    basic.showIcon(IconNames.Confused)
+    //mouth.showRainbow(1, 360)
     heart.showRainbow(1, 360)
-    RainbowSparkleUnicorn.Sound.setVolume(10)
-    RainbowSparkleUnicorn.Sound.playTrack(1)
+
+    RainbowSparkleUnicorn.Sound.setVolume(12)
+    //RainbowSparkleUnicorn.Sound.playTrack(1)
 
     RainbowSparkleUnicorn.Light.turnAllOn();
 
+    // colourMouth(neopixel.colors(NeoPixelColors.Purple))
+
     basic.forever(function () {
         basic.pause(1000);
-        mouth.rotate(1);
+        // mouth.rotate(1);
         heart.rotate(1);
         strip.show();
     })
-    
+
+    basic.forever(function () {
+        // basic.pause(500);      
+
+        let soundLevel = input.soundLevel();
+
+        if (soundLevel < 20) {
+            drawMouth(8, neopixel.colors(NeoPixelColors.Black));
+        } else {
+            drawMouth(8, neopixel.colors(NeoPixelColors.Purple));
+        }
+    })
+
     radio.setGroup(76)
     radio.setTransmitPower(7)
 }
@@ -28,14 +42,13 @@ radio.onReceivedValue(function (name: string, value: number) {
 
 })
 
-input.onButtonPressed(Button.A, function() {
+input.onButtonPressed(Button.A, function () {
     RainbowSparkleUnicorn.Sound.setVolume(10)
-    RainbowSparkleUnicorn.Sound.playTrack(Math.randomRange(1,4))
+    RainbowSparkleUnicorn.Sound.playTrack(Math.randomRange(1, 4))
 })
 
-function rainbowMouth() 
-{
-  const  waiting = 200
+function rainbowMouth() {
+    const waiting = 200
     while (true) {
         drawMouth(1, NeoPixelColors.Red)
         basic.pause(waiting)
@@ -109,3 +122,13 @@ let heart = strip.range(0, 12)
 let mouth = strip.range(12, 15)
 
 startRobot();
+
+RainbowSparkleUnicorn.Touch.onAnyTouched(function (pin: number) {
+
+    basic.showNumber(pin);
+})
+
+
+input.onSound(DetectedSound.Quiet, function () {
+
+})
