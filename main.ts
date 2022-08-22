@@ -27,7 +27,7 @@ function startRobot() {
 
         let soundLevel = input.soundLevel();
 
-        if (soundLevel < 40) {
+        if (soundLevel < 35) {
             drawMouth(8, neopixel.colors(NeoPixelColors.Black));
         } else {
             drawMouth(8, neopixel.colors(NeoPixelColors.Purple));
