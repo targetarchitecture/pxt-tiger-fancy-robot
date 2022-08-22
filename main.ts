@@ -4,11 +4,11 @@ function startRobot() {
     mouth.setBrightness(50)
     heart.showColor(neopixel.colors(NeoPixelColors.Indigo))
     //mouth.showColor(neopixel.colors(NeoPixelColors.Red))
-    basic.showIcon(IconNames.Confused)
+    basic.showIcon(IconNames.Square)
     //mouth.showRainbow(1, 360)
     heart.showRainbow(1, 360)
 
-    RainbowSparkleUnicorn.Sound.setVolume(12)
+    RainbowSparkleUnicorn.Sound.setVolume(13)
     RainbowSparkleUnicorn.Sound.playTrack(1)
 
     RainbowSparkleUnicorn.Light.turnAllOn();
@@ -16,7 +16,7 @@ function startRobot() {
     // colourMouth(neopixel.colors(NeoPixelColors.Purple))
 
     basic.forever(function () {
-        basic.pause(1000);
+        basic.pause(500);
         // mouth.rotate(1);
         heart.rotate(1);
         strip.show();
@@ -27,7 +27,7 @@ function startRobot() {
 
         let soundLevel = input.soundLevel();
 
-        if (soundLevel < 50) {
+        if (soundLevel < 40) {
             drawMouth(8, neopixel.colors(NeoPixelColors.Black));
         } else {
             drawMouth(8, neopixel.colors(NeoPixelColors.Purple));
@@ -39,7 +39,7 @@ function startRobot() {
 }
 
 radio.onReceivedValue(function (name: string, value: number) {
-
+    basic.showString(name + ":" + value);
 })
 
 input.onButtonPressed(Button.A, function () {
@@ -123,12 +123,12 @@ let mouth = strip.range(12, 15)
 
 startRobot();
 
-RainbowSparkleUnicorn.Touch.onAnyTouched(function (pin: number) {
-
-    basic.showNumber(pin);
+//left button
+RainbowSparkleUnicorn.Touch.onReleased(RainbowSparkleUnicorn.Touch.Pins.P0, function () {
+    basic.showIcon(IconNames.Asleep)
 })
 
-
-input.onSound(DetectedSound.Quiet, function () {
-
+//right button
+RainbowSparkleUnicorn.Touch.onReleased(RainbowSparkleUnicorn.Touch.Pins.P3, function () {
+    basic.showIcon(IconNames.Tortoise)
 })
