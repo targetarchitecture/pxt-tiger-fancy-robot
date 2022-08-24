@@ -12,30 +12,33 @@ radio.onReceivedString(function (receivedString) {
 
 function dealWithJoystickMessage(receivedString: string) {
     switch (receivedString) {
-        case "":
+        case "BUTTON_LEFT":
             //
             break;
-        case "":
+        case "TILTRIGHT":
             //
             break;
-        case "":
+        case "BUTTON_B":
             //
             break;
-        case "":
+        case "TILTLEFT":
             //
             break;
-        case "":
+        case "BUTTON_AB":
             //
             break;
-        case "":
+        case "BUTTON_A":
             //
             break;
-        case "":
+        case "THUMBSTICK_RIGHT":
             //
             break;
-        case "":
-            //
-            break;
+        // case "THUMBSTICK_LEFT":
+        //     //
+        //     break;
+        // case "BUTTON_RIGHT":
+        //     //
+        //     break;
     }
 }
 
@@ -43,16 +46,16 @@ function startRobot() {
     radio.setGroup(76)
     radio.setTransmitPower(7)
 
-    heart.setBrightness(50)
-    heart.showRainbow(1, 360)
+    //heart.setBrightness(50)
+    //heart.showRainbow(1, 360)
 
-    mouth.setBrightness(50)
-    mouth.showColor(neopixel.colors(NeoPixelColors.Red))
+    //mouth.setBrightness(50)
+    //mouth.showColor(neopixel.colors(NeoPixelColors.Red))
 
-    loops.everyInterval(500, function () {
-        heart.rotate(1);
-        strip.show();
-    })
+    // loops.everyInterval(500, function () {
+    //     heart.rotate(1);
+    //     strip.show();
+    // })
 
     RainbowSparkleUnicorn.start()
 
@@ -73,9 +76,9 @@ RainbowSparkleUnicorn.Touch.onReleased(RainbowSparkleUnicorn.Touch.Pins.P3, func
 })
 
 
-let strip = neopixel.create(DigitalPin.P0, 27, NeoPixelMode.RGB)
-let heart = strip.range(0, 12)
-let mouth = strip.range(12, 15)
+//let strip = neopixel.create(DigitalPin.P0, 27, NeoPixelMode.RGB)
+//let heart = strip.range(0, 12)
+//let mouth = strip.range(12, 15)
 
 startRobot();
 
