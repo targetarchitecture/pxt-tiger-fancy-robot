@@ -52,3 +52,4 @@ let heart = strip.range(0, 12)
 let mouth = strip.range(12, 15)
 
 startRobot();
+
