@@ -7,8 +7,37 @@ input.onButtonPressed(Button.A, function () {
 })
 
 radio.onReceivedString(function (receivedString) {
-
+    dealWithJoystickMessage(receivedString);
 })
+
+function dealWithJoystickMessage(receivedString: string) {
+    switch (receivedString) {
+        case "":
+            //
+            break;
+        case "":
+            //
+            break;
+        case "":
+            //
+            break;
+        case "":
+            //
+            break;
+        case "":
+            //
+            break;
+        case "":
+            //
+            break;
+        case "":
+            //
+            break;
+        case "":
+            //
+            break;
+    }
+}
 
 function startRobot() {
     radio.setGroup(76)
@@ -32,9 +61,6 @@ function startRobot() {
     RainbowSparkleUnicorn.Light.turnAllOn()
 
 }
-
-
-
 
 // left button
 RainbowSparkleUnicorn.Touch.onReleased(RainbowSparkleUnicorn.Touch.Pins.P0, function () {
