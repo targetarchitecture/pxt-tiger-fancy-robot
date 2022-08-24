@@ -5,7 +5,8 @@
     "dependencies": {
         "core": "*",
         "radio": "*",
-        "Rainbow Sparkle Unicorn": "github:targetarchitecture/pxt-rainbow-sparkle-unicorn#v3.8.0"
+        "Rainbow Sparkle Unicorn": "github:targetarchitecture/pxt-rainbow-sparkle-unicorn#v3.8.0",
+        "neopixel": "github:kittenbot/pxt-neopixel"
     },
     "files": [
         "main.blocks",
