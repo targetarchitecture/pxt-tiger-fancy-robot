@@ -1,3 +1,7 @@
+
+input.onLogoEvent(TouchButtonEvent.Pressed, function() {    
+    basic.showIcon(IconNames.Heart)
+})
 /**
  * })
  */
