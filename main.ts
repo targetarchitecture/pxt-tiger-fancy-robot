@@ -2,7 +2,7 @@
 RainbowSparkleUnicorn.Touch.onReleased(RainbowSparkleUnicorn.Touch.Pins.P0, function () {
     basic.showIcon(IconNames.Asleep)
 })
-function startRobot () {
+function startRobot() {
     radio.setGroup(76)
     radio.setTransmitPower(7)
     heart.setBrightness(50)
@@ -10,10 +10,10 @@ function startRobot () {
     mouth.setBrightness(50)
     mouth.showColor(neopixel.colors(NeoPixelColors.Red))
     loops.everyInterval(500, function () {
-        heart.rotate(1);
+        heart.rotate(2);
         strip.show();
     })
-RainbowSparkleUnicorn.start()
+    RainbowSparkleUnicorn.start()
     RainbowSparkleUnicorn.Sound.setVolume(13)
     RainbowSparkleUnicorn.Sound.playTrack(1)
     RainbowSparkleUnicorn.Light.turnAllOn()
@@ -21,7 +21,7 @@ RainbowSparkleUnicorn.start()
 input.onButtonPressed(Button.A, function () {
     radio.sendString("VIBRATE")
 })
-function dealWithJoystickMessage (receivedString: string) {
+function dealWithJoystickMessage(receivedString: string) {
     switch (receivedString) {
         case "BUTTON_LEFT":
             //
