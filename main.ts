@@ -1,22 +1,36 @@
+/**
+ * })
+ */
+/**
+ * basic.showIcon(IconNames.Tortoise)
+ */
+/**
+ * RainbowSparkleUnicorn.Touch.onReleased(RainbowSparkleUnicorn.Touch.Pins.P3, function () {
+ */
+/**
+ * right button
+ */
 // left button
-RainbowSparkleUnicorn.Touch.onReleased(RainbowSparkleUnicorn.Touch.Pins.P0, function () {
-    basic.showIcon(IconNames.Asleep)
-})
+// RSU.Touch.onReleased(RainbowSparkleUnicorn.Touch.Pins.P0, function () {
+// basic.showIcon(IconNames.Asleep)
+// })
 function startRobot () {
     radio.setGroup(76)
     radio.setTransmitPower(7)
     heart.setBrightness(50)
-   // heart.showRainbow(1, 360)
+    heart.showRainbow(1, 360)
     mouth.setBrightness(50)
     mouth.showColor(neopixel.colors(NeoPixelColors.Red))
-    // loops.everyInterval(500, function () {
-    //     heart.rotate(1);
-    //     strip.show();
-    // })
-RainbowSparkleUnicorn.start()
-    RainbowSparkleUnicorn.Sound.setVolume(13)
-    RainbowSparkleUnicorn.Sound.playTrack(1)
-    RainbowSparkleUnicorn.Light.turnAllOn()
+    loops.everyInterval(500, function () {
+        heart.rotate(1);
+        strip.show();
+
+        led.toggle(0, 0)
+    })
+RSU.start()
+    RSU.Sound.setVolume(13)
+    RSU.Sound.playTrack(1)
+    RSU.Light.turnAllOn()
 }
 input.onButtonPressed(Button.A, function () {
     radio.sendString("VIBRATE")
@@ -54,10 +68,6 @@ function dealWithJoystickMessage (receivedString: string) {
 }
 radio.onReceivedString(function (receivedString) {
     dealWithJoystickMessage(receivedString)
-})
-// right button
-RainbowSparkleUnicorn.Touch.onReleased(RainbowSparkleUnicorn.Touch.Pins.P3, function () {
-    basic.showIcon(IconNames.Tortoise)
 })
 let mouth: neopixel.Strip = null
 let heart: neopixel.Strip = null
