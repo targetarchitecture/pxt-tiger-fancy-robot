@@ -6,8 +6,7 @@
         "core": "*",
         "radio": "*",
         "neopixel": "github:kittenbot/pxt-neopixel",
-        "RSU v2": "github:targetarchitecture/pxt-rsu-v2#v0.0.2",
-        "datalogger": "*"
+        "RSU v2": "github:targetarchitecture/pxt-rsu-v2#v0.0.2"
     },
     "files": [
         "main.blocks",

@@ -1,7 +1,3 @@
-
-input.onLogoEvent(TouchButtonEvent.Pressed, function() {    
-    basic.showIcon(IconNames.Heart)
-})
 /**
  * })
  */
@@ -18,7 +14,7 @@ input.onLogoEvent(TouchButtonEvent.Pressed, function() {
 // RSU.Touch.onReleased(RainbowSparkleUnicorn.Touch.Pins.P0, function () {
 // basic.showIcon(IconNames.Asleep)
 // })
-function startRobot () {
+function startRobot() {
     radio.setGroup(76)
     radio.setTransmitPower(7)
     heart.setBrightness(50)
@@ -31,7 +27,7 @@ function startRobot () {
 
         led.toggle(0, 0)
     })
-RSU.start()
+    RSU.start()
     RSU.Sound.setVolume(13)
     RSU.Sound.playTrack(1)
     RSU.Light.turnAllOn()
@@ -39,7 +35,7 @@ RSU.start()
 input.onButtonPressed(Button.A, function () {
     radio.sendString("VIBRATE")
 })
-function dealWithJoystickMessage (receivedString: string) {
+function dealWithJoystickMessage(receivedString: string) {
     switch (receivedString) {
         case "BUTTON_LEFT":
             //
@@ -79,3 +75,7 @@ let strip = neopixel.create(DigitalPin.P0, 27, NeoPixelMode.RGB)
 heart = strip.range(0, 12)
 mouth = strip.range(12, 15)
 startRobot()
+
+input.onLogoEvent(TouchButtonEvent.Pressed, function () {
+    basic.showIcon(IconNames.Heart)
+})
