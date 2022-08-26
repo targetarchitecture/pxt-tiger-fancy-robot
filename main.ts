@@ -1,19 +1,12 @@
-/**
- * })
- */
-/**
- * basic.showIcon(IconNames.Tortoise)
- */
-/**
- * RainbowSparkleUnicorn.Touch.onReleased(RainbowSparkleUnicorn.Touch.Pins.P3, function () {
- */
-/**
- * right button
- */
-// left button
-// RSU.Touch.onReleased(RainbowSparkleUnicorn.Touch.Pins.P0, function () {
-// basic.showIcon(IconNames.Asleep)
-// })
+
+RainbowSparkleUnicorn.Touch.onReleased(RainbowSparkleUnicorn.Touch.Pins.P3, function () {
+    basic.showIcon(IconNames.Tortoise)
+})
+
+RainbowSparkleUnicorn.Touch.onReleased(RainbowSparkleUnicorn.Touch.Pins.P0, function () {
+    basic.showIcon(IconNames.Asleep)
+})
+
 function startRobot() {
     radio.setGroup(76)
     radio.setTransmitPower(7)
@@ -27,10 +20,10 @@ function startRobot() {
 
         led.toggle(0, 0)
     })
-    RSU.start()
-    RSU.Sound.setVolume(13)
-    RSU.Sound.playTrack(1)
-    RSU.Light.turnAllOn()
+    RainbowSparkleUnicorn.start()
+    RainbowSparkleUnicorn.Sound.setVolume(13)
+    RainbowSparkleUnicorn.Sound.playTrack(1)
+    RainbowSparkleUnicorn.Light.turnAllOn()
 }
 input.onButtonPressed(Button.A, function () {
     radio.sendString("VIBRATE")
