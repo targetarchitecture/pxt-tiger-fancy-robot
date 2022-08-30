@@ -6,7 +6,7 @@
         "core": "*",
         "radio": "*",
         "neopixel": "github:kittenbot/pxt-neopixel",
-        "Rainbow Sparkle Unicorn": "github:targetarchitecture/pxt-rainbow-sparkle-unicorn#v3.8.2"
+        "Rainbow Sparkle Unicorn": "github:targetarchitecture/pxt-rainbow-sparkle-unicorn#v3.9.1"
     },
     "files": [
         "main.blocks",

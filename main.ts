@@ -13,6 +13,7 @@ RainbowSparkleUnicorn.Touch.onReleased(RainbowSparkleUnicorn.Touch.Pins.P0, func
 })
 
 function startRobot() {
+    RainbowSparkleUnicorn.start()
     radio.setGroup(76)
     radio.setTransmitPower(7)
     heart.setBrightness(50)
@@ -23,7 +24,7 @@ function startRobot() {
         heart.rotate(1);
         strip.show();
     })
-    RainbowSparkleUnicorn.start()
+
     RainbowSparkleUnicorn.Sound.setVolume(13)
     RainbowSparkleUnicorn.Sound.playTrack(1)
     RainbowSparkleUnicorn.Light.turnAllOn()
@@ -109,6 +110,3 @@ mouth = strip.range(12, 15)
 
 startRobot()
 
-input.onLogoEvent(TouchButtonEvent.Pressed, function () {
-    basic.showIcon(IconNames.Heart)
-})
