@@ -1,4 +1,9 @@
 
+const headServo = RainbowSparkleUnicorn.Movement.Pins.P15;
+const leftArmServo = RainbowSparkleUnicorn.Movement.Pins.P14;
+const rightArmServo = RainbowSparkleUnicorn.Movement.Pins.P13;
+
+
 RainbowSparkleUnicorn.Touch.onReleased(RainbowSparkleUnicorn.Touch.Pins.P3, function () {
     basic.showIcon(IconNames.Tortoise)
 })
@@ -24,6 +29,11 @@ function startRobot() {
     RainbowSparkleUnicorn.Sound.setVolume(13)
     RainbowSparkleUnicorn.Sound.playTrack(1)
     RainbowSparkleUnicorn.Light.turnAllOn()
+
+    RainbowSparkleUnicorn.Movement.setServoPulse(headServo, 384);
+    RainbowSparkleUnicorn.Movement.setServoPulse(leftArmServo, 339);
+    RainbowSparkleUnicorn.Movement.setServoPulse(rightArmServo, 240);
+
 }
 input.onButtonPressed(Button.A, function () {
     radio.sendString("VIBRATE")
@@ -31,10 +41,12 @@ input.onButtonPressed(Button.A, function () {
 function dealWithJoystickMessage(receivedString: string) {
     switch (receivedString) {
         case "BUTTON_LEFT":
+            RainbowSparkleUnicorn.Movement.setServoPulse(RainbowSparkleUnicorn.Movement.Pins.P3,123);
             //
             break;
         case "TILTRIGHT":
             //
+
             break;
         case "BUTTON_B":
             //
