@@ -25,6 +25,7 @@
     "disablesVariants": [
         "mbdal"
     ],
+    "binaryholder": true,
     "yotta": {
         "config": {
             "microbit-dal": {
