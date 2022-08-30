@@ -3,6 +3,8 @@ const headServo = RainbowSparkleUnicorn.Movement.Pins.P15;
 const leftArmServo = RainbowSparkleUnicorn.Movement.Pins.P14;
 const rightArmServo = RainbowSparkleUnicorn.Movement.Pins.P13;
 
+let LeftArmPWM = 339;
+let RightArmPWM = 240;
 
 RainbowSparkleUnicorn.Touch.onReleased(RainbowSparkleUnicorn.Touch.Pins.P3, function () {
     basic.showIcon(IconNames.Tortoise)
@@ -30,8 +32,8 @@ function startRobot() {
     RainbowSparkleUnicorn.Light.turnAllOn()
 
     RainbowSparkleUnicorn.Movement.setServoPulse(headServo, 384);
-    RainbowSparkleUnicorn.Movement.setServoPulse(leftArmServo, 339);
-    RainbowSparkleUnicorn.Movement.setServoPulse(rightArmServo, 240);
+    RainbowSparkleUnicorn.Movement.setServoPulse(leftArmServo, LeftArmPWM);
+    RainbowSparkleUnicorn.Movement.setServoPulse(rightArmServo, RightArmPWM);
 
 }
 input.onButtonPressed(Button.A, function () {
@@ -49,7 +51,7 @@ function dealWithJoystickMessage(receivedString: string) {
 
             break;
         case "BUTTON_B":
-            //
+            radio.sendString("VIBRATE");
             break;
         case "TILTLEFT":
             //
@@ -72,25 +74,44 @@ function dealWithJoystickMessage(receivedString: string) {
         default:
 
             const parts = receivedString.split(",")
-            const X = parts[0].substr(2);
-            const Y = parts[1].substr(2);
+            const X = parts[0].substr(3);
+            const Y = parts[1].substr(3);
 
             if (receivedString.substr(0, 2) == "RX") {
                 const RX = parseInt(X);
                 const RY = parseInt(Y);
 
-                const pwm = Math.map(RY, 0, 256, 426 - 240, 426);
+                // if (RY > 120 || RY < 128 + 8) {
+                //     RightArmPWM= 339;
+                // } else
+                if (RY > 128 + 8) {
+                    RightArmPWM = RightArmPWM + 1;
+                } else if (RY < 120) {
+                    RightArmPWM = RightArmPWM - 1;
+                }
+                //{
+                //     const pwm = Math.round(Math.map(RY, 0, 256, 426 - 240, 426));
+                //     RainbowSparkleUnicorn.Movement.setServoPulse(rightArmServo, pwm);
+                // }
 
-                RainbowSparkleUnicorn.Movement.setServoPulse(leftArmServo, 339);
+                led.plotBarGraph(RightArmPWM, 256)
+                RainbowSparkleUnicorn.Movement.setServoPulse(rightArmServo, RightArmPWM);
             }
+
             if (receivedString.substr(0, 2) == "LX") {
                 const LX = parseInt(X);
                 const LY = parseInt(Y);
 
-                const pwm = Math.map(LY, 0, 256, 339 - 155, 155);
+                if (LY > 120 || LY < 128 + 8) {
+                    RainbowSparkleUnicorn.Movement.setServoPulse(leftArmServo, 339);
+                } else {
 
-                RainbowSparkleUnicorn.Movement.setServoPulse(leftArmServo, pwm);
+                    const pwm = Math.round(Math.map(LY, 0, 256, 339 - 155, 155));
+
+                    RainbowSparkleUnicorn.Movement.setServoPulse(leftArmServo, pwm);
+                }
             }
+
             break;
     }
 }
