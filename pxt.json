@@ -6,12 +6,14 @@
         "core": "*",
         "radio": "*",
         "neopixel": "github:kittenbot/pxt-neopixel",
-        "Rainbow Sparkle Unicorn": "github:targetarchitecture/pxt-rainbow-sparkle-unicorn#v3.9.1"
+        "Rainbow Sparkle Unicorn": "github:targetarchitecture/pxt-rainbow-sparkle-unicorn#v3.9.1",
+        "datalogger": "*"
     },
     "files": [
         "main.blocks",
         "main.ts",
-        "README.md"
+        "README.md",
+        "constants.ts"
     ],
     "testFiles": [],
     "targetVersions": {
