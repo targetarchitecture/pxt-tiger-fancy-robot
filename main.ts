@@ -25,9 +25,8 @@ function startRobot() {
     mouth.setBrightness(50)
     mouth.showColor(neopixel.colors(NeoPixelColors.Indigo))
 
-    //RainbowSparkleUnicorn.Sound.setVolume(15)
-    RainbowSparkleUnicorn.Sound.playTrack(1)
-
+    RainbowSparkleUnicorn.Sound.setVolume(10)
+    RainbowSparkleUnicorn.Sound.playTrack(3)
 
     RainbowSparkleUnicorn.Movement.setServoPulse(headServo, HeadPWM);
     RainbowSparkleUnicorn.Movement.setServoPulse(leftArmServo, LeftArmPWM);
