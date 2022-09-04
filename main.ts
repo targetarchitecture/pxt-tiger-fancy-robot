@@ -8,8 +8,6 @@ let joystickRY = 128;
 let joystickLX = 128;
 let joystickLY = 128;
 
-datalogger.log(null).
-
 RainbowSparkleUnicorn.Touch.onReleased(RainbowSparkleUnicorn.Touch.Pins.P3, function () {
     basic.showIcon(IconNames.Tortoise)
 })
@@ -52,24 +50,21 @@ input.onButtonPressed(Button.A, function () {
 
 function dealWithServoMovements() {
 
-    if (joystickRY > 128 + 8) {
-        RightArmPWM = RightArmPWM + 1;
-    } else if (joystickRY < 120) {
-        RightArmPWM = RightArmPWM - 1;
-    }
-    //{
-    //     const pwm = Math.round(Math.map(RY, 0, 256, 426 - 240, 426));
-    //     RainbowSparkleUnicorn.Movement.setServoPulse(rightArmServo, pwm);
-    // }
+    let RightArmRange = 150;
 
-    led.plotBarGraph(joystickRY, 255)
+    //right arm movement
+    RightArmPWM = Math.round(Math.map(joystickRY, 0, 255, 240 - RightArmRange, 240 + RightArmRange));
     RainbowSparkleUnicorn.Movement.setServoPulse(rightArmServo, RightArmPWM);
-    RainbowSparkleUnicorn.Movement.setServoPulse(leftArmServo, RightArmPWM);
-    //}
 
+    let LeftArmRange = 150;
 
-    const pwm = Math.round(Math.map(joystickLX, 0, 255, 500, 278));
-    RainbowSparkleUnicorn.Movement.setServoPulse(headServo, pwm);
+    //left arm movement
+    //LeftArmPWM = Math.round(Math.map(joystickLY, 0, 255, 339 + LeftArmPWM, 339 - LeftArmPWM));
+    //RainbowSparkleUnicorn.Movement.setServoPulse(leftArmServo, LeftArmPWM);
+
+    //head movement
+    HeadPWM = Math.round(Math.map(joystickLX, 0, 255, 500, 278));
+    RainbowSparkleUnicorn.Movement.setServoPulse(headServo, HeadPWM);
 }
 
 function dealWithJoystickButton(value: JoystickButtons) {
