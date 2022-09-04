@@ -25,7 +25,7 @@ function startRobot() {
     mouth.setBrightness(50)
     mouth.showColor(neopixel.colors(NeoPixelColors.Indigo))
 
-    RainbowSparkleUnicorn.Sound.setVolume(15)
+    //RainbowSparkleUnicorn.Sound.setVolume(15)
     RainbowSparkleUnicorn.Sound.playTrack(1)
 
 
@@ -126,8 +126,52 @@ startRobot()
 basic.forever(function () {
     basic.pause(randint(30, 60) * 1000);
 
-    //https://makecode.microbit.org/18207-85042-97260-50754
-
     mouth.showColor(randint(0, 255));
+
+    let rnd = Math.randomRange(0,5)
+
+    switch (rnd) {
+        case 0:
+            RainbowSparkleUnicorn.Light.turnOn(leftEyeRed)
+            break;
+        case 1:
+            RainbowSparkleUnicorn.Light.turnOn(leftEyeGreen)
+            break;
+        case 2:
+            RainbowSparkleUnicorn.Light.turnOn(leftEyeBlue)
+            break;
+        case 3:
+            RainbowSparkleUnicorn.Light.turnOn(rightEyeRed)
+            break;
+        case 4:
+            RainbowSparkleUnicorn.Light.turnOn(rightEyeGreen)
+            break;
+        case 5:
+            RainbowSparkleUnicorn.Light.turnOn(rightEyeBlue)
+            break;
+    }
+
+     rnd = Math.randomRange(0, 5)
+
+    switch (rnd) {
+        case 0:
+            RainbowSparkleUnicorn.Light.turnOff(leftEyeRed)
+            break;
+        case 1:
+            RainbowSparkleUnicorn.Light.turnOff(leftEyeGreen)
+            break;
+        case 2:
+            RainbowSparkleUnicorn.Light.turnOff(leftEyeBlue)
+            break;
+        case 3:
+            RainbowSparkleUnicorn.Light.turnOff(rightEyeRed)
+            break;
+        case 4:
+            RainbowSparkleUnicorn.Light.turnOff(rightEyeGreen)
+            break;
+        case 5:
+            RainbowSparkleUnicorn.Light.turnOff(rightEyeBlue)
+            break;
+    }
 
 })

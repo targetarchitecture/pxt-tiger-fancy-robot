@@ -18,3 +18,11 @@ enum JoystickButtons {
 const headServo = RainbowSparkleUnicorn.Movement.Pins.P15;
 const leftArmServo = RainbowSparkleUnicorn.Movement.Pins.P14;
 const rightArmServo = RainbowSparkleUnicorn.Movement.Pins.P13;
+
+const leftEyeRed = RainbowSparkleUnicorn.Light.Pins.P2;
+const leftEyeGreen = RainbowSparkleUnicorn.Light.Pins.P15;
+const leftEyeBlue = RainbowSparkleUnicorn.Light.Pins.P1;
+
+const rightEyeRed = RainbowSparkleUnicorn.Light.Pins.P0;
+const rightEyeGreen = RainbowSparkleUnicorn.Light.Pins.P14;
+const rightEyeBlue = RainbowSparkleUnicorn.Light.Pins.P3;
