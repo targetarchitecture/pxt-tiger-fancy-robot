@@ -27,7 +27,7 @@ function startRobot() {
 
     RainbowSparkleUnicorn.Sound.setVolume(15)
     RainbowSparkleUnicorn.Sound.playTrack(1)
-    RainbowSparkleUnicorn.Light.turnAllOn()
+
 
     RainbowSparkleUnicorn.Movement.setServoPulse(headServo, HeadPWM);
     RainbowSparkleUnicorn.Movement.setServoPulse(leftArmServo, LeftArmPWM);
@@ -42,6 +42,13 @@ function startRobot() {
     loops.everyInterval(100, function () {
         dealWithServoMovements();
     })
+
+    for (let i = 0; i < 16; i++) {
+        RainbowSparkleUnicorn.Light.turnOn(i);
+        basic.showNumber(i);
+        basic.pause(5000);
+        RainbowSparkleUnicorn.Light.turnOff(i);
+    }
 }
 
 input.onButtonPressed(Button.A, function () {
@@ -77,7 +84,6 @@ function dealWithJoystickButton(value: JoystickButtons) {
 }
 
 radio.onReceivedValue(function (name: string, value: number) {
-
 
     switch (name) {
         case "PRESSED":
@@ -115,3 +121,13 @@ mouth = strip.range(12, 15)
 
 startRobot()
 
+
+//loop for random muoth , eye colours
+basic.forever(function () {
+    basic.pause(randint(30, 60) * 1000);
+
+    //https://makecode.microbit.org/18207-85042-97260-50754
+
+    mouth.showColor(randint(0, 255));
+
+})
