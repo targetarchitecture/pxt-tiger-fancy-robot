@@ -25,6 +25,8 @@ function startRobot() {
     mouth.setBrightness(50)
     mouth.showColor(neopixel.colors(NeoPixelColors.Indigo))
 
+    RainbowSparkleUnicorn.Light.turnAllOn();
+
     RainbowSparkleUnicorn.Sound.setVolume(10)
     RainbowSparkleUnicorn.Sound.playTrack(3)
 
@@ -42,12 +44,12 @@ function startRobot() {
         dealWithServoMovements();
     })
 
-    for (let i = 0; i < 16; i++) {
-        RainbowSparkleUnicorn.Light.turnOn(i);
-        basic.showNumber(i);
-        basic.pause(5000);
-        RainbowSparkleUnicorn.Light.turnOff(i);
-    }
+    // for (let i = 0; i < 16; i++) {
+    //     RainbowSparkleUnicorn.Light.turnOn(i);
+    //     basic.showNumber(i);
+    //     basic.pause(5000);
+    //     RainbowSparkleUnicorn.Light.turnOff(i);
+    // }
 }
 
 input.onButtonPressed(Button.A, function () {
@@ -123,11 +125,15 @@ startRobot()
 
 //loop for random muoth , eye colours
 basic.forever(function () {
-    basic.pause(randint(30, 60) * 1000);
+
+    //basic.pause(randint(30, 60) * 1000);
+    basic.pause(10 * 1000);
 
     mouth.showColor(randint(0, 255));
 
-    let rnd = Math.randomRange(0,5)
+    let rnd = Math.randomRange(0, 5)
+
+    //basic.showNumber(rnd);
 
     switch (rnd) {
         case 0:
@@ -150,7 +156,9 @@ basic.forever(function () {
             break;
     }
 
-     rnd = Math.randomRange(0, 5)
+    rnd = Math.randomRange(0, 5)
+
+    //basic.showNumber(rnd);
 
     switch (rnd) {
         case 0:
