@@ -129,16 +129,12 @@ basic.forever(function () {
     //basic.pause(randint(30, 60) * 1000);
     basic.pause(10 * 1000);
 
-    let rnd = randint(0, 255)
+    let col = neopixel.rgb(randint(0, 255), randint(0, 255), randint(0, 255))
 
-    basic.showNumber(rnd);
+    mouth.showColor(col);
+    mouth.show();
 
-    mouth.showColor(rnd);
-    strip.show();
-
-     rnd = randint(0, 5)
-
-    //basic.showNumber(rnd);
+    let rnd = randint(0, 5)
 
     switch (rnd) {
         case 0:
@@ -163,7 +159,6 @@ basic.forever(function () {
 
     rnd = Math.randomRange(0, 5)
 
-    //basic.showNumber(rnd);
 
     switch (rnd) {
         case 0:
