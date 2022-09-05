@@ -129,9 +129,14 @@ basic.forever(function () {
     //basic.pause(randint(30, 60) * 1000);
     basic.pause(10 * 1000);
 
-    mouth.showColor(randint(0, 255));
+    let rnd = randint(0, 255)
 
-    let rnd = Math.randomRange(0, 5)
+    basic.showNumber(rnd);
+
+    mouth.showColor(rnd);
+    strip.show();
+
+     rnd = randint(0, 5)
 
     //basic.showNumber(rnd);
 
