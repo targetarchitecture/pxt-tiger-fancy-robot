@@ -71,20 +71,35 @@ function dealWithServoMovementsV1() {
 
 function dealWithServoMovementsV2() {
 
-    let RightArmRange = 150;
+     const deadZone = 8;
+     const delta = 10;
 
-    //dead zone
-    joystickRY
+   //right arm movement
+    if (joystickRY < 128 - deadZone ){
+        //not in dead dead zone
+        RightArmPWM = RightArmPWM - (joystickRY / delta);
+    }
 
-    //right arm movement
-    RightArmPWM = Math.round(Math.map(joystickRY, 0, 255, 240 - RightArmRange, 240 + RightArmRange));
+    if ( joystickRY > 128 + deadZone) {
+        //not in dead dead zone
+        RightArmPWM = RightArmPWM + (joystickRY / delta);
+    }
+ 
     RainbowSparkleUnicorn.Movement.setServoPulse(rightArmServo, RightArmPWM);
 
-    let LeftArmRange = 150;
-
     //left arm movement
-    //LeftArmPWM = Math.round(Math.map(joystickLY, 0, 255, 339 + LeftArmPWM, 339 - LeftArmPWM));
-    //RainbowSparkleUnicorn.Movement.setServoPulse(leftArmServo, LeftArmPWM);
+    if (joystickLY < 128 - deadZone) {
+        //not in dead dead zone
+        LeftArmPWM = LeftArmPWM - (joystickLY / delta);
+    }
+
+    if (joystickLY > 128 + deadZone) {
+        //not in dead dead zone
+        LeftArmPWM = LeftArmPWM + (joystickLY / delta);
+    }
+
+    RainbowSparkleUnicorn.Movement.setServoPulse(leftArmServo, LeftArmPWM);
+
 
     //head movement
     let NewHeadPWM = Math.round(Math.map(joystickLX, 0, 255, 500, 278));
