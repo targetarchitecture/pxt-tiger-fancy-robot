@@ -41,22 +41,16 @@ function startRobot() {
     })
 
     loops.everyInterval(100, function () {
-        dealWithServoMovements();
+        dealWithServoMovementsV2();
     })
 
-    // for (let i = 0; i < 16; i++) {
-    //     RainbowSparkleUnicorn.Light.turnOn(i);
-    //     basic.showNumber(i);
-    //     basic.pause(5000);
-    //     RainbowSparkleUnicorn.Light.turnOff(i);
-    // }
 }
 
 input.onButtonPressed(Button.A, function () {
     radio.sendString("VIBRATE")
 })
 
-function dealWithServoMovements() {
+function dealWithServoMovementsV1() {
 
     let RightArmRange = 150;
 
@@ -73,6 +67,33 @@ function dealWithServoMovements() {
     //head movement
     HeadPWM = Math.round(Math.map(joystickLX, 0, 255, 500, 278));
     RainbowSparkleUnicorn.Movement.setServoPulse(headServo, HeadPWM);
+}
+
+function dealWithServoMovementsV2() {
+
+    let RightArmRange = 150;
+
+    //dead zone
+    joystickRY
+
+    //right arm movement
+    RightArmPWM = Math.round(Math.map(joystickRY, 0, 255, 240 - RightArmRange, 240 + RightArmRange));
+    RainbowSparkleUnicorn.Movement.setServoPulse(rightArmServo, RightArmPWM);
+
+    let LeftArmRange = 150;
+
+    //left arm movement
+    //LeftArmPWM = Math.round(Math.map(joystickLY, 0, 255, 339 + LeftArmPWM, 339 - LeftArmPWM));
+    //RainbowSparkleUnicorn.Movement.setServoPulse(leftArmServo, LeftArmPWM);
+
+    //head movement
+    let NewHeadPWM = Math.round(Math.map(joystickLX, 0, 255, 500, 278));
+
+    if (NewHeadPWM != HeadPWM) {
+        RainbowSparkleUnicorn.Movement.setServoPulse(headServo, HeadPWM);
+    }
+
+    HeadPWM = NewHeadPWM;
 }
 
 function dealWithJoystickButton(value: JoystickButtons) {
