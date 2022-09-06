@@ -71,35 +71,49 @@ function dealWithServoMovementsV1() {
 
 function dealWithServoMovementsV2() {
 
-     const deadZone = 8;
-     const delta = 10;
+    const deadZone = 8;
+    const delta = 10;
+    let inDeadZone = true;
 
-   //right arm movement
-    if (joystickRY < 128 - deadZone ){
+    //right arm movement
+    if (joystickRY < 128 - deadZone) {
         //not in dead dead zone
         RightArmPWM = RightArmPWM - (joystickRY / delta);
+        inDeadZone = false;
     }
 
-    if ( joystickRY > 128 + deadZone) {
+    if (joystickRY > 128 + deadZone) {
         //not in dead dead zone
         RightArmPWM = RightArmPWM + (joystickRY / delta);
+        inDeadZone = false;
     }
- 
-    RainbowSparkleUnicorn.Movement.setServoPulse(rightArmServo, RightArmPWM);
+
+    if (inDeadZone = false) {
+        RainbowSparkleUnicorn.Movement.setServoPulse(rightArmServo, RightArmPWM);
+    } else {
+        RainbowSparkleUnicorn.Movement.setServoPulse(rightArmServo, 240);
+    }
+
+    inDeadZone = true;
 
     //left arm movement
     if (joystickLY < 128 - deadZone) {
         //not in dead dead zone
         LeftArmPWM = LeftArmPWM - (joystickLY / delta);
+        inDeadZone = false;
     }
 
     if (joystickLY > 128 + deadZone) {
         //not in dead dead zone
         LeftArmPWM = LeftArmPWM + (joystickLY / delta);
+        inDeadZone = false;
     }
 
-    RainbowSparkleUnicorn.Movement.setServoPulse(leftArmServo, LeftArmPWM);
-
+    if (inDeadZone = false) {
+        RainbowSparkleUnicorn.Movement.setServoPulse(leftArmServo, LeftArmPWM);
+    } else {
+        RainbowSparkleUnicorn.Movement.setServoPulse(leftArmServo, 339);
+    }
 
     //head movement
     let NewHeadPWM = Math.round(Math.map(joystickLX, 0, 255, 500, 278));
