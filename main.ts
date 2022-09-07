@@ -10,10 +10,16 @@ let joystickLY = 128;
 
 RainbowSparkleUnicorn.Touch.onReleased(RainbowSparkleUnicorn.Touch.Pins.P3, function () {
     basic.showIcon(IconNames.Tortoise)
+
+    RainbowSparkleUnicorn.Sound.setVolume(10)
+    RainbowSparkleUnicorn.Sound.playTrack(1)
 })
 
 RainbowSparkleUnicorn.Touch.onReleased(RainbowSparkleUnicorn.Touch.Pins.P0, function () {
     basic.showIcon(IconNames.Asleep)
+
+    RainbowSparkleUnicorn.Sound.setVolume(10)
+    RainbowSparkleUnicorn.Sound.playTrack(2)
 })
 
 function startRobot() {
@@ -76,17 +82,20 @@ function dealWithServoMovementsV2() {
     //let inDeadZone = true;
 
     //right arm movement
-    if (joystickRY < 128 - deadZone) {
+    if (joystickLY < 128 - deadZone) {
         //not in dead dead zone
-        RightArmPWM = RightArmPWM - (joystickRY / delta);
+        RightArmPWM = RightArmPWM - (joystickLY / delta);
         //inDeadZone = false;
     }
 
-    if (joystickRY > 128 + deadZone) {
+    if (joystickLY > 128 + deadZone) {
         //not in dead dead zone
-        RightArmPWM = RightArmPWM + (joystickRY / delta);
+        RightArmPWM = RightArmPWM + (joystickLY / delta);
         //inDeadZone = false;
     }
+
+    //boundaries
+    RightArmPWM = Math.constrain(RightArmPWM, 240, 426);
 
     //if (inDeadZone = false) {
         RainbowSparkleUnicorn.Movement.setServoPulse(rightArmServo, RightArmPWM);
@@ -97,17 +106,21 @@ function dealWithServoMovementsV2() {
     //inDeadZone = true;
 
     //left arm movement
-    if (joystickLY < 128 - deadZone) {
+    if (joystickRY < 128 - deadZone) {
         //not in dead dead zone
-        LeftArmPWM = LeftArmPWM - (joystickLY / delta);
+        LeftArmPWM = LeftArmPWM - (joystickRY / delta);
         //inDeadZone = false;
     }
 
-    if (joystickLY > 128 + deadZone) {
+    if (joystickRY > 128 + deadZone) {
         //not in dead dead zone
-        LeftArmPWM = LeftArmPWM + (joystickLY / delta);
+        LeftArmPWM = LeftArmPWM + (joystickRY / delta);
+
         //inDeadZone = false;
     }
+
+//boundaries
+    LeftArmPWM = Math.constrain(LeftArmPWM, 155, 339);
 
     //if (inDeadZone = false) {
         RainbowSparkleUnicorn.Movement.setServoPulse(leftArmServo, LeftArmPWM);
