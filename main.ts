@@ -56,54 +56,38 @@ input.onButtonPressed(Button.A, function () {
     radio.sendString("VIBRATE")
 })
 
-function dealWithServoMovementsV1() {
-
-    let RightArmRange = 150;
-
-    //right arm movement
-    RightArmPWM = Math.round(Math.map(joystickRY, 0, 255, 240 - RightArmRange, 240 + RightArmRange));
-    RainbowSparkleUnicorn.Movement.setServoPulse(rightArmServo, RightArmPWM);
-
-    let LeftArmRange = 150;
-
-    //left arm movement
-    //LeftArmPWM = Math.round(Math.map(joystickLY, 0, 255, 339 + LeftArmPWM, 339 - LeftArmPWM));
-    //RainbowSparkleUnicorn.Movement.setServoPulse(leftArmServo, LeftArmPWM);
-
-    //head movement
-    HeadPWM = Math.round(Math.map(joystickLX, 0, 255, 500, 278));
-    RainbowSparkleUnicorn.Movement.setServoPulse(headServo, HeadPWM);
-}
 
 function dealWithServoMovementsV2() {
 
     const deadZone = 8;
-    const delta = 10;
+    const delta = 50;
     //let inDeadZone = true;
 
     //right arm movement
     if (joystickLY < 128 - deadZone) {
         //not in dead dead zone
-        RightArmPWM = RightArmPWM - (joystickLY / delta);
+        RightArmPWM = RightArmPWM + (joystickLY / delta);
         //inDeadZone = false;
     }
 
     if (joystickLY > 128 + deadZone) {
         //not in dead dead zone
-        RightArmPWM = RightArmPWM + (joystickLY / delta);
+        RightArmPWM = RightArmPWM - (joystickLY / delta);
         //inDeadZone = false;
     }
 
     //boundaries
-    RightArmPWM = Math.constrain(RightArmPWM, 240, 426);
+    RightArmPWM = Math.constrain(RightArmPWM, 155, 339);
+
+  //  LeftArmPWM = Math.constrain(LeftArmPWM, 155, 339);
 
     //if (inDeadZone = false) {
-        RainbowSparkleUnicorn.Movement.setServoPulse(rightArmServo, RightArmPWM);
+    RainbowSparkleUnicorn.Movement.setServoPulse(rightArmServo, RightArmPWM);
     // } else {
     //     RainbowSparkleUnicorn.Movement.setServoPulse(rightArmServo, 240);
     // }
 
-    //inDeadZone = true;
+   // inDeadZone = true;
 
     //left arm movement
     if (joystickRY < 128 - deadZone) {
@@ -116,17 +100,18 @@ function dealWithServoMovementsV2() {
         //not in dead dead zone
         LeftArmPWM = LeftArmPWM + (joystickRY / delta);
 
-        //inDeadZone = false;
+       // inDeadZone = false;
     }
 
-//boundaries
-    LeftArmPWM = Math.constrain(LeftArmPWM, 155, 339);
+    //boundaries
+    LeftArmPWM = Math.constrain(LeftArmPWM, 240, 426);
+   // RightArmPWM = Math.constrain(RightArmPWM, 240, 426);
 
-    //if (inDeadZone = false) {
-        RainbowSparkleUnicorn.Movement.setServoPulse(leftArmServo, LeftArmPWM);
-    // } else {
-    //     RainbowSparkleUnicorn.Movement.setServoPulse(leftArmServo, 339);
-    // }
+   // if (inDeadZone = false) {
+    RainbowSparkleUnicorn.Movement.setServoPulse(leftArmServo, LeftArmPWM);
+   // } else {
+   //     RainbowSparkleUnicorn.Movement.setServoPulse(leftArmServo, 339);
+   // }
 
     //head movement
     let NewHeadPWM = Math.round(Math.map(joystickLX, 0, 255, 500, 278));
