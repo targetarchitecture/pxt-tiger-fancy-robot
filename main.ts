@@ -9,15 +9,14 @@ let joystickLX = 128;
 let joystickLY = 128;
 
 RainbowSparkleUnicorn.Touch.onReleased(RainbowSparkleUnicorn.Touch.Pins.P3, function () {
-    basic.showIcon(IconNames.Tortoise)
 
     RainbowSparkleUnicorn.Sound.setVolume(10)
     RainbowSparkleUnicorn.Sound.playTrack(1)
+
+    positionSIT();
 })
 
 RainbowSparkleUnicorn.Touch.onReleased(RainbowSparkleUnicorn.Touch.Pins.P0, function () {
-    basic.showIcon(IconNames.Asleep)
-
     RainbowSparkleUnicorn.Sound.setVolume(10)
     RainbowSparkleUnicorn.Sound.playTrack(2)
 })
@@ -47,15 +46,53 @@ function startRobot() {
     })
 
     loops.everyInterval(100, function () {
-        dealWithServoMovementsV2();
+        //dealWithServoMovementsV2();
+        dealWithServoMovementsV1();
     })
 
+    loops.everyInterval(500, function () {
+
+        basic.showLeds(`
+            . . # . .
+            . # # # .
+            # # # # #
+            # # # # #
+            . # . # .
+            `)
+        basic.pause(500)
+        basic.showLeds(`
+            . . . . .
+            . . # . .
+            . # # # .
+            . # . # .
+            . . . . .
+            `)
+    })
 }
 
 input.onButtonPressed(Button.A, function () {
     radio.sendString("VIBRATE")
 })
 
+function positionSIT() {
+}
+
+function dealWithServoMovementsV1() {
+
+    //right arm movement
+    let RightArmRange = 150;
+    RightArmPWM = Math.round(Math.map(joystickRY, 0, 255, 240 - RightArmRange, 240 + RightArmRange));
+    RainbowSparkleUnicorn.Movement.setServoPulse(rightArmServo, RightArmPWM);
+
+    //left arm movement
+    let LeftArmRange = 150;
+    LeftArmPWM = Math.round(Math.map(joystickLY, 0, 255, 339 + LeftArmPWM, 339 - LeftArmPWM));
+    RainbowSparkleUnicorn.Movement.setServoPulse(leftArmServo, LeftArmPWM);
+
+    //head movement
+    HeadPWM = Math.round(Math.map(joystickLX, 0, 255, 500, 278));
+    RainbowSparkleUnicorn.Movement.setServoPulse(headServo, HeadPWM);
+}
 
 function dealWithServoMovementsV2() {
 
@@ -79,7 +116,7 @@ function dealWithServoMovementsV2() {
     //boundaries
     RightArmPWM = Math.constrain(RightArmPWM, 155, 339);
 
-  //  LeftArmPWM = Math.constrain(LeftArmPWM, 155, 339);
+    //  LeftArmPWM = Math.constrain(LeftArmPWM, 155, 339);
 
     //if (inDeadZone = false) {
     RainbowSparkleUnicorn.Movement.setServoPulse(rightArmServo, RightArmPWM);
@@ -87,7 +124,7 @@ function dealWithServoMovementsV2() {
     //     RainbowSparkleUnicorn.Movement.setServoPulse(rightArmServo, 240);
     // }
 
-   // inDeadZone = true;
+    // inDeadZone = true;
 
     //left arm movement
     if (joystickRY < 128 - deadZone) {
@@ -100,18 +137,18 @@ function dealWithServoMovementsV2() {
         //not in dead dead zone
         LeftArmPWM = LeftArmPWM + (joystickRY / delta);
 
-       // inDeadZone = false;
+        // inDeadZone = false;
     }
 
     //boundaries
     LeftArmPWM = Math.constrain(LeftArmPWM, 240, 426);
-   // RightArmPWM = Math.constrain(RightArmPWM, 240, 426);
+    // RightArmPWM = Math.constrain(RightArmPWM, 240, 426);
 
-   // if (inDeadZone = false) {
+    // if (inDeadZone = false) {
     RainbowSparkleUnicorn.Movement.setServoPulse(leftArmServo, LeftArmPWM);
-   // } else {
-   //     RainbowSparkleUnicorn.Movement.setServoPulse(leftArmServo, 339);
-   // }
+    // } else {
+    //     RainbowSparkleUnicorn.Movement.setServoPulse(leftArmServo, 339);
+    // }
 
     //head movement
     let NewHeadPWM = Math.round(Math.map(joystickLX, 0, 255, 500, 278));
@@ -128,6 +165,19 @@ function dealWithJoystickButton(value: JoystickButtons) {
     switch (value) {
         case JoystickButtons.BUTTON_B:
             radio.sendValue("VIBRATE", 500);
+            music.playSoundEffect(music.builtinSoundEffect(soundExpression.happy), SoundExpressionPlayMode.InBackground)
+            break;
+        case JoystickButtons.BUTTON_A:
+            music.playSoundEffect(music.builtinSoundEffect(soundExpression.giggle), SoundExpressionPlayMode.InBackground)
+            break;
+        case JoystickButtons.BUTTON_AB:
+            music.playSoundEffect(music.builtinSoundEffect(soundExpression.hello), SoundExpressionPlayMode.InBackground)
+            break;
+        case JoystickButtons.BUTTON_LEFT:
+            music.playSoundEffect(music.builtinSoundEffect(soundExpression.yawn), SoundExpressionPlayMode.InBackground)
+            break;
+        case JoystickButtons.BUTTON_RIGHT:
+            music.playSoundEffect(music.builtinSoundEffect(soundExpression.sad), SoundExpressionPlayMode.InBackground)
             break;
     }
 }
